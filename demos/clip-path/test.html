@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .clip[style] {
+    opacity: 0;
+  }
+  .active .clip:not([style]) {
+      opacity: 0;
+      animation: fadeIn .1s .4s both;
+  }
+  .active .clip[style] {
+      will-change: transform;
+      animation: noTransform .5s both;
+  }
+
+  @keyframes noTransform {
+      to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0) rotate(0);
+      }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .box { height: 190px;}
+  .text {
+    position: absolute; width: 300px;
+    padding: 16px;
+    background-color: #cd0000;
+    color: #fff;
+    font-size: 20px;
+  }
+</style>
+<body>
+  <div class="box active">
+    <p id="text" class="text clip">魔兽要上映了，由于我从来没有玩过《魔兽世界》，所以无感。但是，有一点我是知道的：不管是联盟狗还是部落猪，最后都是为了艾泽拉斯！</p>
+  </div>
+  <script src="./clip-back.js"></script>
+  <script>
+    const eleText = document.getElementById('text')
+    clipPath(eleText)
+  </script>
+</body>
+</html>
